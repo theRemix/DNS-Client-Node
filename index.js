@@ -2,6 +2,8 @@
 const { createSocket } = require('dgram');
 const client = createSocket('udp4');
 
+const message = process.argv[2] || 'ubuntu.com'
+
 const { encodeQuery, parseResponse } = require('./dns');
 
 const DNSPORT = 53
@@ -19,7 +21,7 @@ client.on("message", (msg, {address, port}) => {
 
 client.on("listening", () => {
   const { address, port } = client.address();
-  console.log(`client listening ${address}:${port}`);
+  // console.log(`client listening ${address}:${port}`);
 });
 
 client.on("connect", () => {
@@ -29,8 +31,6 @@ client.on("connect", () => {
 client.on("close", () => {
   // console.log("close");
 });
-
-const message = 'ubuntu.com'
 
 client.send(encodeQuery(message), DNSPORT, DNSHOST, err => {
   if (err) console.log(err);
