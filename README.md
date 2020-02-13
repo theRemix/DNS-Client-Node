@@ -17,7 +17,7 @@ See [./dns.js](./dns.js)
 
 ## Example 1
 
-`node .` __defaults to ubuntu.com__
+`node .` _defaults to ubuntu.com_
 
 ```javascript
 {
